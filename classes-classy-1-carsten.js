@@ -56,36 +56,36 @@ console.log(newPerson.describe());
 // clock.start();
 // ```
 
-// class Clock {
-//   constructor(start, stop) {
-//     this.stop = function () {};
-//     this.start = function () {
-//       render();
-//     };
-//     function render() {
-//       let date = new Date();
+class Clock {
+  constructor(template) {
+    this.template = template;
+  }
+  render() {
+    let date = new Date();
 
-//       let hours = date.getHours();
-//       if (hours < 10) hours = "0" + hours;
+    let hours = date.getHours();
+    if (hours < 10) hours = "0" + hours;
 
-//       let mins = date.getMinutes();
-//       if (mins < 10) mins = "0" + mins;
+    let mins = date.getMinutes();
+    if (mins < 10) mins = "0" + mins;
 
-//       let secs = date.getSeconds();
-//       if (secs < 10) secs = "0" + secs;
+    let secs = date.getSeconds();
+    if (secs < 10) secs = "0" + secs;
 
-//       let output = template
-//         .replace("h", hours)
-//         .replace("m", mins)
-//         .replace("s", secs);
+    let output = this.template
+      .replace("h", hours)
+      .replace("m", mins)
+      .replace("s", secs);
 
-//       console.log(output);
-//     }
-//   }
-// }
+    console.log(output);
+  }
+  start() {
+    this.render();
+  }
+}
 
-// let clock = new Clock({ template: "h:m:s" });
-// console.log(clock.render());
+let clock = new Clock("h:m:s");
+clock.start();
 
 // #### 3. TV Class
 // * Create a TV class with properties like brand, channel and volume.
@@ -98,8 +98,8 @@ console.log(newPerson.describe());
 class TV {
   constructor(brand, channel = 1, volume = 50) {
     this.brand = brand;
-    this.channel = channel;
-    this.volume = volume;
+    // this.channel = channel;
+    // this.volume = volume;
   }
 
   changeVolume() {
@@ -134,8 +134,8 @@ class Cylinder {
     this.radius = radius;
     this.height = height;
   }
-  volumeCylinder(radius, height) {
-    return (Math.PI * 3 * 3 * 5).toFixed(4);
+  volumeCylinder() {
+    return (Math.PI * this.radius * this.radius * this.height).toFixed(4);
   }
 }
 const cyl = new Cylinder(3, 10);
